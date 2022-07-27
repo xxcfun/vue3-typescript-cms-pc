@@ -93,39 +93,42 @@ class XXRequest {
         this.showLoading = config.showLoading
       }
 
-      this.instance.request<any, T>(config).then((res) => {
-        // 1.单个请求对数据的处理
-        if (config.interceptors?.responseInterceptor) {
-          res = config.interceptors.responseInterceptor(res)
-        }
-        // 2.将showLoading设置true，这样不会影响下一个请求
-        this.showLoading = DEAFULT_LOADING
+      this.instance
+        .request<any, T>(config)
+        .then((res) => {
+          // 1.单个请求对数据的处理
+          if (config.interceptors?.responseInterceptor) {
+            res = config.interceptors.responseInterceptor(res)
+          }
+          // 2.将showLoading设置true，这样不会影响下一个请求
+          this.showLoading = DEAFULT_LOADING
 
-        // 3.将结果resolve返回出去
-        resolve(res)
-      }).catch((error) => {
-        // 将showLoading设置true，这样不会影响下一个请求
-        this.showLoading = DEAFULT_LOADING
-        reject(error)
-        return error
-      })
+          // 3.将结果resolve返回出去
+          resolve(res)
+        })
+        .catch((error) => {
+          // 将showLoading设置true，这样不会影响下一个请求
+          this.showLoading = DEAFULT_LOADING
+          reject(error)
+          return error
+        })
     })
   }
 
   get<T>(config: XXRequestConfig<T>): Promise<T> {
-    return this.request<T>({...config, method: 'GET'})
+    return this.request<T>({ ...config, method: 'GET' })
   }
   post<T>(config: XXRequestConfig<T>): Promise<T> {
-    return this.request<T>({...config, method: 'POST'})
+    return this.request<T>({ ...config, method: 'POST' })
   }
   put<T>(config: XXRequestConfig<T>): Promise<T> {
-    return this.request<T>({...config, method: 'PUT'})
+    return this.request<T>({ ...config, method: 'PUT' })
   }
   delete<T>(config: XXRequestConfig<T>): Promise<T> {
-    return this.request<T>({...config, method: 'DELETE'})
+    return this.request<T>({ ...config, method: 'DELETE' })
   }
   patch<T>(config: XXRequestConfig<T>): Promise<T> {
-    return this.request<T>({...config, method: 'PATCH'})
+    return this.request<T>({ ...config, method: 'PATCH' })
   }
 }
 

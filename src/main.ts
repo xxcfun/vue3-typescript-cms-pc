@@ -17,8 +17,7 @@ xxRequest.request({
   interceptors: {
     requestInterceptor: (config) => {
       console.log('单独请求的config')
-      if (config && config.headers)
-      config.headers['token'] = '123'
+      if (config && config.headers) config.headers['token'] = '123'
       return config
     },
     responseInterceptor: (res) => {
@@ -34,11 +33,13 @@ interface DataType {
   success: boolean
 }
 
-xxRequest.get<DataType>({
-  url: '/home/multidata',
-  showLoading: false
-}).then((res) => {
-  console.log(res.data)
-  console.log(res.returnCode)
-  console.log(res.success)
-})
+xxRequest
+  .get<DataType>({
+    url: '/home/multidata',
+    showLoading: false
+  })
+  .then((res) => {
+    console.log(res.data)
+    console.log(res.returnCode)
+    console.log(res.success)
+  })
