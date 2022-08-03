@@ -15,20 +15,35 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, reactive } from 'vue'
-
+import { defineComponent, reactive, ref } from 'vue'
+import { useStore } from 'vuex'
 import { rules } from '../config/phone-config'
+import { ElForm } from 'element-plus/lib/components'
 
 export default defineComponent({
   setup() {
+    const store = useStore()
     const phone = reactive({
       number: '',
       code: ''
     })
 
+    const formRef = ref<InstanceType<typeof ElForm>>()
+
+    const loginAction = () => {
+      formRef.value?.validate((valid) => {
+        if (valid) {
+          // 验证
+          store.dispatch('login/phoneLoginAction', { ...phone })
+        }
+      })
+    }
+
     return {
       phone,
-      rules
+      rules,
+      formRef,
+      loginAction
     }
   }
 })

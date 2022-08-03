@@ -36,8 +36,6 @@ class XXRequest {
     // 2.添加所有的实例都有的拦截器
     this.instance.interceptors.request.use(
       (config) => {
-        console.log('所有的实例都有的拦截器：请求成功拦截')
-
         if (this.showLoading) {
           this.loading = ElLoading.service({
             lock: true,
@@ -48,15 +46,12 @@ class XXRequest {
         return config
       },
       (error) => {
-        console.log('所有的实例都有的拦截器：请求失败拦截')
         return error
       }
     )
 
     this.instance.interceptors.response.use(
       (res) => {
-        console.log('所有的实例都有的拦截器：响应成功拦截')
-
         // 将loading移除
         this.loading?.close()
 
@@ -69,8 +64,6 @@ class XXRequest {
         return res
       },
       (error) => {
-        console.log('所有的实例都有的拦截器：响应失败拦截')
-
         // 将loading移除
         this.loading?.close()
 
