@@ -4,13 +4,15 @@
     <el-tabs type="border-card" stretch v-model="currentTab">
       <el-tab-pane name="account">
         <template #label>
-          <span><i class="el-icon-user-solid"></i>账号登陆</span>
+          <el-icon><User /></el-icon>
+          <span>账号登陆</span>
         </template>
         <login-account ref="accountRef" />
       </el-tab-pane>
       <el-tab-pane name="phone">
         <template #label>
-          <span><i class="el-icon-mobile-phone"></i>手机登陆</span>
+          <el-icon><Iphone /></el-icon>
+          <span>手机登陆</span>
         </template>
         <login-phone ref="phoneRef" />
       </el-tab-pane>
@@ -67,6 +69,11 @@ export default defineComponent({
 
   .title {
     text-align: center;
+  }
+
+  .el-icon {
+    vertical-align: middle;
+    padding-right: 3px;
   }
 
   .account-control {
