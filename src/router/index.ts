@@ -15,6 +15,7 @@ const routes: RouteRecordRaw[] = [
     path: '/main',
     component: () => import('@/views/main/main.vue')
   }
+  // TODO 动态生成路由
 ]
 
 const router = createRouter({
