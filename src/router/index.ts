@@ -9,13 +9,21 @@ const routes: RouteRecordRaw[] = [
   },
   {
     path: '/login',
+    name: 'login',
     component: () => import('@/views/login/login.vue')
   },
   {
     path: '/main',
+    name: 'main',
     component: () => import('@/views/main/main.vue')
+    // children: [] => 根据usermenus来决定
+  },
+  // 匹配不存在的路由返回404界面
+  {
+    path: '/:patchMatch(.*)*',
+    name: 'not-found',
+    component: () => import('@/views/not-found/not-found.vue')
   }
-  // TODO 动态生成路由
 ]
 
 const router = createRouter({
