@@ -9,7 +9,9 @@
           <nav-header @foldChange="handleFoldChange" />
         </el-header>
         <el-main class="page-content">
-          <router-view />
+          <div class="page-info">
+            <router-view />
+          </div>
         </el-main>
       </el-container>
     </el-container>
@@ -22,7 +24,6 @@ import NavMenu from '@/components/nav-menu'
 import NavHeader from '@/components/nav-header'
 
 export default defineComponent({
-  name: 'main',
   components: {
     NavMenu,
     NavHeader
@@ -57,6 +58,11 @@ export default defineComponent({
 
 .page-content {
   height: calc(100% - 48px);
+
+  .page-info {
+    background-color: #ffffff;
+    border-radius: 5px;
+  }
 }
 
 .el-header,
