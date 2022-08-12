@@ -1,7 +1,9 @@
 import { RouteRecordRaw } from 'vue-router'
+import { IBreadcrumb } from '@/base-ui/breadcrumb'
 
 let firstMenu: any = null
 
+// 用户菜单取到相关路由
 export function mapMenusToRouters(userMenus: any[]): RouteRecordRaw[] {
   const routes: RouteRecordRaw[] = []
   // 1.先去加载默认所有的routes
@@ -37,11 +39,26 @@ export function mapMenusToRouters(userMenus: any[]): RouteRecordRaw[] {
   return routes
 }
 
-export function pathMapToMenu(userMenus: any[], currentPath: string): any {
+// 拿到当前路由所在的菜单做面包屑
+export function pathMapBreadcrumbs(userMenus: any[], currentPath: string) {
+  const breadcrumbs: IBreadcrumb[] = []
+  pathMapToMenu(userMenus, currentPath, breadcrumbs)
+  return breadcrumbs
+}
+
+// 菜单与当前路由做映射
+export function pathMapToMenu(
+  userMenus: any[],
+  currentPath: string,
+  breadcrumbs?: IBreadcrumb[]
+): any {
   for (const menu of userMenus) {
     if (menu.type === 1) {
       const findMenu = pathMapToMenu(menu.children ?? [], currentPath)
       if (findMenu) {
+        // path: menu.url 跳转路径可以不传
+        breadcrumbs?.push({ name: menu.name })
+        breadcrumbs?.push({ name: findMenu.name })
         return findMenu
       }
     } else if (menu.type === 2 && menu.url === currentPath) {

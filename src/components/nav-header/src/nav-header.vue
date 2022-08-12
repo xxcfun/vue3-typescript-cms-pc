@@ -9,21 +9,24 @@
       </template>
     </el-icon>
     <div class="content">
-      <div>面包屑</div>
-      <div>
-        <user-info />
-      </div>
+      <xx-breadcrumb :breadcrumbs="breadcrumbs" />
+      <user-info />
     </div>
   </div>
 </template>
 
 <script lang="ts">
-import { defineComponent, ref } from 'vue'
+import { defineComponent, ref, computed } from 'vue'
+import { useStore } from '@/store'
 import userInfo from './cpns/user-info.vue'
+import XxBreadcrumb from '@/base-ui/breadcrumb'
+import { useRoute } from 'vue-router'
+import { pathMapBreadcrumbs } from '@/utils/map-menus'
 
 export default defineComponent({
   components: {
-    userInfo
+    userInfo,
+    XxBreadcrumb
   },
   emits: ['foldChange'],
   setup(prop, { emit }) {
@@ -33,9 +36,19 @@ export default defineComponent({
       emit('foldChange', isFold.value)
     }
 
+    // 面包屑的数组
+    const store = useStore()
+    const breadcrumbs = computed(() => {
+      const userMenus = store.state.login.userMenus
+      const route = useRoute()
+      const currentPath = route.path
+      return pathMapBreadcrumbs(userMenus, currentPath)
+    })
+
     return {
       isFold,
-      handleFoldClick
+      handleFoldClick,
+      breadcrumbs
     }
   }
 })
