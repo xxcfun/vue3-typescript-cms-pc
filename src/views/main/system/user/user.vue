@@ -1,19 +1,19 @@
 <template>
   <div class="user">
-    <xx-form v-bind="searchFormConfig" />
+    <page-search :searchFormConfig="searchFormConfig" />
     <div class="content"></div>
   </div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from 'vue'
-import XxForm from '@/base-ui/form'
+import PageSearch from '@/components/page-search'
 import { searchFormConfig } from '@/views/main/system/user/config/search.config'
 
 export default defineComponent({
   name: 'user',
   components: {
-    XxForm
+    PageSearch
   },
   setup() {
     return {
@@ -23,4 +23,7 @@ export default defineComponent({
 })
 </script>
 
-<style scoped></style>
+<style scoped lang="less">
+.user {
+}
+</style>
