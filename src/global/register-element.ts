@@ -1,12 +1,13 @@
 import { App } from 'vue'
 import 'element-plus/theme-chalk/index.css'
 import {
-  ElForm,
   ElButton,
-  ElFormItem,
   ElTable,
-  ElTabPane,
+  ElTableColumn,
   ElTabs,
+  ElTabPane,
+  ElForm,
+  ElFormItem,
   ElInput,
   ElCheckbox,
   ElLink,
@@ -29,12 +30,16 @@ import {
   ElOption,
   ElDatePicker,
   ElBreadcrumb,
-  ElBreadcrumbItem
+  ElBreadcrumbItem,
+  ElPagination,
+  ElImage,
+  ElDialog
 } from 'element-plus/lib/components'
 
 const components = [
   ElButton,
   ElTable,
+  ElTableColumn,
   ElTabs,
   ElTabPane,
   ElForm,
@@ -61,7 +66,10 @@ const components = [
   ElOption,
   ElDatePicker,
   ElBreadcrumb,
-  ElBreadcrumbItem
+  ElBreadcrumbItem,
+  ElPagination,
+  ElImage,
+  ElDialog
 ]
 
 export default function (app: App): void {

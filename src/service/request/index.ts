@@ -75,7 +75,7 @@ class XXRequest {
     )
   }
 
-  request<T>(config: XXRequestConfig<T>): Promise<T> {
+  request<T = any>(config: XXRequestConfig<T>): Promise<T> {
     return new Promise((resolve, reject) => {
       // 1.单个请求对请求config的处理
       if (config.interceptors?.requestInterceptor) {
@@ -108,19 +108,19 @@ class XXRequest {
     })
   }
 
-  get<T>(config: XXRequestConfig<T>): Promise<T> {
+  get<T = any>(config: XXRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: 'GET' })
   }
-  post<T>(config: XXRequestConfig<T>): Promise<T> {
+  post<T = any>(config: XXRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: 'POST' })
   }
-  put<T>(config: XXRequestConfig<T>): Promise<T> {
+  put<T = any>(config: XXRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: 'PUT' })
   }
-  delete<T>(config: XXRequestConfig<T>): Promise<T> {
+  delete<T = any>(config: XXRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: 'DELETE' })
   }
-  patch<T>(config: XXRequestConfig<T>): Promise<T> {
+  patch<T = any>(config: XXRequestConfig<T>): Promise<T> {
     return this.request<T>({ ...config, method: 'PATCH' })
   }
 }

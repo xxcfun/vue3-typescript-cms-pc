@@ -6,12 +6,8 @@
       </template>
       <template #footer>
         <div class="header-btns">
-          <el-button
-            ><el-icon><RefreshRight /></el-icon>重置</el-button
-          >
-          <el-button type="primary"
-            ><el-icon><Search /></el-icon>搜索</el-button
-          >
+          <el-button icon="RefreshRight" @click="handleResetClick">重置</el-button>
+          <el-button icon="Search" type="primary" @click="handleQueryClick">搜索</el-button>
         </div>
       </template>
     </xx-form>
@@ -33,16 +29,34 @@ export default defineComponent({
   components: {
     XxForm
   },
-  setup() {
-    const formData = ref({
-      id: '',
-      name: '',
-      password: '',
-      sport: '',
-      createTime: ''
-    })
+  emits: ['resetBtnClick', 'queryBtnClick'],
+  setup(props, { emit }) {
+    // 双向绑定的属性应该是由配置文件的field来决定
+    const formItems = props.searchFormConfig?.formItems ?? []
+    const formOriginData: any = {}
+    for (const item of formItems) {
+      formOriginData[item.field] = ''
+    }
+
+    const formData = ref(formOriginData)
+
+    // 重置操作 逐个重置formData里面的值
+    const handleResetClick = () => {
+      for (const key in formOriginData) {
+        formData.value[`${key}`] = formOriginData[key]
+      }
+      emit('resetBtnClick')
+    }
+
+    // 搜索操作
+    const handleQueryClick = () => {
+      emit('queryBtnClick', formData.value)
+    }
+
     return {
-      formData
+      formData,
+      handleResetClick,
+      handleQueryClick
     }
   }
 })

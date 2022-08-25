@@ -1,6 +1,7 @@
 import xxRequest from '@/service'
 
-import { IAccount, ILoginResult, IDataType } from '@/service/login/types'
+import { IAccount, ILoginResult } from '@/service/login/types'
+import { IDataType } from '@/service/types'
 
 enum LoginAPI {
   AccountLogin = '/login',

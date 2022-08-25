@@ -10,6 +10,8 @@ export interface IFormItem {
   options?: any[]
   // 针对特殊的属性
   otherOptions?: any
+  // 控制表单选项的隐藏
+  isHidden?: boolean
 }
 
 export interface IForm {
