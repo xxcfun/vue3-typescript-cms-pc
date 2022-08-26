@@ -42,12 +42,15 @@ const loginModule: Module<ILoginState, IRootState> = {
     }
   },
   actions: {
-    async accountLoginAction({ commit }, payload: IAccount) {
+    async accountLoginAction({ commit, dispatch }, payload: IAccount) {
       // 实现登录逻辑
       const loginResult = await accountLoginRequest(payload)
       const { id, token } = loginResult.data
       commit('changeToken', token)
       localCache.setCache('token', token)
+
+      // 拿到token后发送初始化请求，获取完整的role/department
+      dispatch('getInitialDataAction', null, { root: true }) // 请求跟的action
 
       // 请求用户数据
       const userInfoResult = await requestUserInfoById(id)
@@ -68,16 +71,19 @@ const loginModule: Module<ILoginState, IRootState> = {
     phoneLoginAction({ commit }, payload: any) {
       console.log('执行phoneLoginAction', payload)
     },
-    loadLocalLogin({ commit }) {
+    // 重新加载
+    loadLocalLogin({ commit, dispatch }) {
       const token = localCache.getCache('token')
-      const userInfo = localCache.getCache('userInfo')
-      const userMenus = localCache.getCache('userMenus')
       if (token) {
         commit('changeToken', token)
+        // 重新加载后也发送初始化请求，获取完整的role/department
+        dispatch('getInitialDataAction', null, { root: true })
       }
+      const userInfo = localCache.getCache('userInfo')
       if (userInfo) {
         commit('changeUserInfo', userInfo)
       }
+      const userMenus = localCache.getCache('userMenus')
       if (userMenus) {
         commit('changeUserMenus', userMenus)
       }
