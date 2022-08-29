@@ -85,4 +85,22 @@ export function mapMenusToPermissions(userMenus: any[]) {
   return permissions
 }
 
+// 拿到菜单权限里面的所有叶子节点
+export function mapMenuLeafKeys(menuList: any[]) {
+  const leftKeys: number[] = []
+
+  const _recurseGetLeaf = (menuList: any[]) => {
+    for (const menu of menuList) {
+      if (menu.children) {
+        _recurseGetLeaf(menu.children)
+      } else {
+        leftKeys.push(menu.id)
+      }
+    }
+  }
+  _recurseGetLeaf(menuList)
+
+  return leftKeys
+}
+
 export { firstMenu }

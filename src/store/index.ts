@@ -11,7 +11,8 @@ const store = createStore<IRootState>({
       name: 'xuanxuan',
       age: 26,
       entireDepartment: [],
-      entireRole: []
+      entireRole: [],
+      entireMenu: []
     }
   },
   mutations: {
@@ -20,12 +21,15 @@ const store = createStore<IRootState>({
     },
     changeEntireRole(state, roleList) {
       state.entireRole = roleList
+    },
+    changeEntireMenu(state, menuList) {
+      state.entireMenu = menuList
     }
   },
   getters: {},
   actions: {
     async getInitialDataAction({ commit }) {
-      // 请求部门和角色数据
+      // 请求全部的部门和角色数据
       const departmentResult = await getPageListData('/department/list', {
         offset: 0,
         size: 1000
@@ -36,9 +40,13 @@ const store = createStore<IRootState>({
         size: 1000
       })
       const { list: roleList } = roleResult.data
+      // 请求全部的菜单数据
+      const menuResult = await getPageListData('/menu/list', {})
+      const { list: menuList } = menuResult.data
       // 保存数据
       commit('changeEntireDepartment', departmentList)
       commit('changeEntireRole', roleList)
+      commit('changeEntireMenu', menuList)
     }
   },
   modules: {

@@ -2,6 +2,7 @@
   <div class="page-modal">
     <el-dialog title="新建用户" v-model="dialogVisible" width="30%" destroy-on-close center>
       <xx-form v-bind="modalConfig" v-model="formData"></xx-form>
+      <slot></slot>
       <template #footer>
         <span class="dialog-footer">
           <el-button @click="dialogVisible = false">取消</el-button>
@@ -25,6 +26,10 @@ export default defineComponent({
       required: true
     },
     defaultInfo: {
+      type: Object,
+      default: () => ({})
+    },
+    otherInfo: {
       type: Object,
       default: () => ({})
     },
@@ -58,14 +63,14 @@ export default defineComponent({
         // 编辑
         store.dispatch('system/editPageDataAction', {
           pageName: props.pageName,
-          eidtData: { ...formData.value },
+          editData: { ...formData.value, ...props.otherInfo },
           id: props.defaultInfo.id
         })
       } else {
         // 新建
         store.dispatch('system/createPageDataAction', {
           pageName: props.pageName,
-          createData: { ...formData.value }
+          createData: { ...formData.value, ...props.otherInfo }
         })
       }
     }

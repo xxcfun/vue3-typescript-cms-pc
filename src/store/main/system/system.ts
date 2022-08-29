@@ -117,7 +117,7 @@ const systemModule: Module<ISystemState, IRootState> = {
 
     async editPageDataAction({ dispatch }, payload: any) {
       // 1.获取pageName, id, editData, url
-      const { pageName, id, editData } = payload
+      const { pageName, editData, id } = payload
       const pageUrl = `/${pageName}/${id}`
 
       // 2.对页面发送请求
