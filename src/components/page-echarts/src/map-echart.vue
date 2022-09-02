@@ -27,7 +27,7 @@ const options = computed(() => {
       text: '全国销量统计',
       left: 'center',
       textStyle: {
-        color: '#fff'
+        color: '#999'
       }
     },
     tooltip: {
@@ -47,12 +47,12 @@ const options = computed(() => {
         color: ['rgb(70, 240, 252)', 'rgb(250, 220, 46)', 'rgb(245, 38, 186)']
       },
       textStyle: {
-        color: '#fff'
+        color: '#999'
       }
     },
     geo: {
       map: 'china',
-      roam: 'scale',
+      roam: true,
       emphasis: {
         areaColor: '#f4cccc',
         borderColor: 'rgb(9, 54, 95)',
@@ -70,7 +70,7 @@ const options = computed(() => {
         symbolSize: 12,
         emphasis: {
           itemStyle: {
-            borderColor: '#fff',
+            borderColor: '#999',
             borderWidth: 1
           }
         }
