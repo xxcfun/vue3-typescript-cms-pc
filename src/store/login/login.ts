@@ -68,9 +68,9 @@ const loginModule: Module<ILoginState, IRootState> = {
       router.push('/main')
     },
     // 目前用不到这个action
-    phoneLoginAction({ commit }, payload: any) {
-      console.log('执行phoneLoginAction', payload)
-    },
+    // phoneLoginAction({ commit }, payload: any) {
+    //   console.log('执行phoneLoginAction', payload)
+    // },
     // 重新加载
     loadLocalLogin({ commit, dispatch }) {
       const token = localCache.getCache('token')

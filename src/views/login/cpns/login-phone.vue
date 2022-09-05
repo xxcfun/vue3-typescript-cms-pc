@@ -16,13 +16,11 @@
 
 <script lang="ts">
 import { defineComponent, reactive, ref } from 'vue'
-import { useStore } from 'vuex'
 import { rules } from '../config/phone-config'
 import { ElForm } from 'element-plus/lib/components'
 
 export default defineComponent({
   setup() {
-    const store = useStore()
     const phone = reactive({
       number: '',
       code: ''
@@ -31,12 +29,7 @@ export default defineComponent({
     const formRef = ref<InstanceType<typeof ElForm>>()
 
     const loginAction = () => {
-      formRef.value?.validate((valid) => {
-        if (valid) {
-          // 验证
-          store.dispatch('login/phoneLoginAction', { ...phone })
-        }
-      })
+      console.log('手机号登录模块待完善，目前没有具体相关功能')
     }
 
     return {
