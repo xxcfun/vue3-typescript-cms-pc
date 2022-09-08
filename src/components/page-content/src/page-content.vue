@@ -8,9 +8,9 @@
     >
       <!-- 1.handler中的插槽 -->
       <template #headerHandler>
-        <el-button v-if="isCreate" type="primary" size="default" @click="handleNewClick"
-          >新建用户</el-button
-        >
+        <el-button v-if="isCreate" type="primary" size="default" @click="handleNewClick">{{
+          title
+        }}</el-button>
         <el-button icon="Refresh" size="default">刷新</el-button>
       </template>
       <!-- 2.列中的插槽 -->
@@ -71,6 +71,10 @@ export default defineComponent({
       required: true
     },
     pageName: {
+      type: String,
+      required: true
+    },
+    title: {
       type: String,
       required: true
     }

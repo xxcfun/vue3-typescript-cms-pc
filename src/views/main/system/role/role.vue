@@ -9,6 +9,7 @@
       ref="pageContentRef"
       :contentTableConfig="contentTableConfig"
       page-name="role"
+      title="新建角色"
       @newBtnClick="handleNewData"
       @editBtnClick="handleEditData"
     />

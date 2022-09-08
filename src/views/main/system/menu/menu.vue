@@ -4,6 +4,7 @@
       ref="pageContentRef"
       :contentTableConfig="contentTableConfig"
       page-name="menu"
+      title="新建菜单"
     ></page-content>
   </div>
 </template>

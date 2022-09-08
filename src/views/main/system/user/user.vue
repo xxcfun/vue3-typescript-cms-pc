@@ -9,6 +9,7 @@
       ref="pageContentRef"
       :contentTableConfig="contentTableConfig"
       page-name="users"
+      title="新建用户"
       @newBtnClick="handleNewData"
       @editBtnClick="handleEditData"
     />

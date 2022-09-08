@@ -1,6 +1,11 @@
 <template>
   <div class="goods">
-    <page-content ref="pageContentRef" :contentTableConfig="contentTableConfig" page-name="goods">
+    <page-content
+      ref="pageContentRef"
+      :contentTableConfig="contentTableConfig"
+      page-name="goods"
+      title="新建商品"
+    >
       <template #oldPrice="scope">
         {{ '￥' + scope.row.oldPrice }}
       </template>
